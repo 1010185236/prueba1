@@ -1,0 +1,23 @@
+{
+  "name": "prueba1",
+  "version": "1.0.0",
+  "description": "ejercicio en clase\r cambio 1\r cambio 1.12\r Clave 1 prueba 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1010185236/prueba1.git"
+  },
+  "author": "Nataly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1010185236/prueba1/issues"
+  },
+  "homepage": "https://github.com/1010185236/prueba1#readme",
+  "dependencies": {
+    "hapi": "^17.6.0",
+    "inert": "^5.1.0"
+  }
+}
