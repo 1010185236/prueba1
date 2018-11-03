@@ -1,9 +1,18 @@
 'use strict';
-
 const Hapi = require('hapi');
 const Inert = require('inert');
+const {Pool} = require ("pg");
 
-const server = new Hapi.Server({
+const pool = new Pool({
+user: "postgres",
+host: "localhost",
+database: "Video club",
+password: "GuFu1700",
+port: 5432
+});
+
+
+    const server = new Hapi.Server({
     port: 3000,
     host: "localhost",
     routes: {
@@ -37,6 +46,26 @@ const init = async function () {
             return 'Hello, world!';
         }
     });
+    
+    server.route({
+        method: 'GET',
+        path: '/socios',
+        handler: async (request, h) => {
+            let result = await pool.query('SELECT * FROM socios')
+            return result;
+        }
+    });
+    
+    server.route({
+        method: 'POST',
+        path: '/socios',
+        handler: async (request, h) => {
+            let body = request.payload;
+            let result = await pool.query('INSERT INTO socios VALUES ($1, $2, $3, $4) ',[body.codigo, body.nombre, body.direccion, body.telefono]);
+            return "EXITO";
+        }
+    });
+    
     await server.start();
     
     console.log(`Server running at: ${server.info.uri}`);
